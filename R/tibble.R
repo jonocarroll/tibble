@@ -138,6 +138,8 @@ tibble <- function(...,
                    .name_repair = c("check_unique", "unique", "universal", "minimal")) {
   xs <- quos(...)
 
+  .name_repair <- rlang::arg_match(.name_repair)
+
   is_null <- map_lgl(xs, quo_is_null)
 
   tibble_quos(xs[!is_null], .rows, .name_repair)
